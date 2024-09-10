@@ -1,0 +1,19 @@
+div.square {
+    border: 2px solid black;
+    padding: 50%;
+}
+
+div#container {
+    display: flex;
+    width: 500px;
+    height: 500px;
+}
+
+div.stack {
+    width: 100%;
+}
+
+button {
+    height: 40px;
+    margin-bottom: 40px;
+}
