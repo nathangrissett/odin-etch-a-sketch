@@ -27,119 +27,62 @@
         button.textContent = "Restart"
 
         button.addEventListener('click', function () {
-            let grid = prompt ("Enter number of squares per side");
+            let grid;
+            while (true) {
+                grid = Number(prompt ("Enter number of squares per side (1-100)"));
+                if (!isNaN(grid) && grid >= 1 && grid <= 100) {
+                    break;
+                } else {
+                    alert("Please enter a valid number between 1 and 100");
+                }
+            }
+            removeSquare();
+            num = grid;
+            createSquare();
         });
 
-        // stack
-        
-        const stack1 = document.createElement("div");
-        const stack2 = document.createElement("div");
-        const stack3 = document.createElement("div");
-        const stack4 = document.createElement("div");
-        const stack5 = document.createElement("div");
+        // stack/square
 
-        stack1.classList.add("stack");
-        stack2.classList.add("stack");
-        stack3.classList.add("stack");
-        stack4.classList.add("stack");
-        stack5.classList.add("stack");
+        let num = 16;
+        let randomNum = Math.floor(Math.random() * 256);
 
-        container.appendChild(stack1);
-        container.appendChild(stack2);
-        container.appendChild(stack3);
-        container.appendChild(stack4);
-        container.appendChild(stack5);
+        function createSquare() {
+            for (let i = 1; i <= num; i++) {
+                const stack = document.createElement("div");
+                stack.classList.add(`stack`);
+                container.appendChild(stack);
 
-        // square
+                for (let j = 1; j <= num; j++) {
+                const div = document.createElement("div");
+                div.classList.add("square");
+                stack.appendChild(div);
+                }
 
-        const div1 = document.createElement("div");
-        const div2 = document.createElement("div");
-        const div3 = document.createElement("div");
-        const div4 = document.createElement("div");
-        const div5 = document.createElement("div");
-        const div6 = document.createElement("div");
-        const div7 = document.createElement("div");
-        const div8 = document.createElement("div");
-        const div9 = document.createElement("div");
-        const div10 = document.createElement("div");
-        const div11 = document.createElement("div");
-        const div12 = document.createElement("div");
-        const div13 = document.createElement("div");
-        const div14 = document.createElement("div");
-        const div15 = document.createElement("div");
-        const div16 = document.createElement("div");
-        const div17 = document.createElement("div");
-        const div18 = document.createElement("div");
-        const div19 = document.createElement("div");
-        const div20 = document.createElement("div");
-        const div21 = document.createElement("div");
-        const div22 = document.createElement("div");
-        const div23 = document.createElement("div");
-        const div24 = document.createElement("div");
-        const div25 = document.createElement("div");
+            }
 
+            const square = document.querySelectorAll(".square");
 
-        div1.classList.add("square");
-        div2.classList.add("square");
-        div3.classList.add("square");
-        div4.classList.add("square");
-        div5.classList.add("square");
-        div6.classList.add("square");
-        div7.classList.add("square");
-        div8.classList.add("square");
-        div9.classList.add("square");
-        div10.classList.add("square");
-        div11.classList.add("square");
-        div12.classList.add("square");
-        div13.classList.add("square");
-        div14.classList.add("square");
-        div15.classList.add("square");
-        div16.classList.add("square");
-        div17.classList.add("square");
-        div18.classList.add("square");
-        div19.classList.add("square");
-        div20.classList.add("square");
-        div21.classList.add("square");
-        div22.classList.add("square");
-        div23.classList.add("square");
-        div24.classList.add("square");
-        div25.classList.add("square");
-
-        stack1.appendChild(div1);
-        stack1.appendChild(div2);
-        stack1.appendChild(div3);
-        stack1.appendChild(div4);
-        stack1.appendChild(div5);
-        stack2.appendChild(div6);
-        stack2.appendChild(div7);
-        stack2.appendChild(div8);
-        stack2.appendChild(div9);
-        stack2.appendChild(div10);
-        stack3.appendChild(div11);
-        stack3.appendChild(div12);
-        stack3.appendChild(div13);
-        stack3.appendChild(div14);
-        stack3.appendChild(div15);
-        stack4.appendChild(div16);
-        stack4.appendChild(div17);
-        stack4.appendChild(div18);
-        stack4.appendChild(div19);
-        stack4.appendChild(div20);
-        stack5.appendChild(div21);
-        stack5.appendChild(div22);
-        stack5.appendChild(div23);
-        stack5.appendChild(div24);
-        stack5.appendChild(div25);
-
-
-        const square = document.querySelectorAll(".square");
-
-        square.forEach(square => {
-            square.addEventListener('mouseenter', function () {
-                this.style.background = "black";
+            square.forEach(square => {
+                square.addEventListener('mouseenter', function () {
+                    this.style.background = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+                });
             });
-        });
 
+            let opacity = 0;
+
+            square.forEach(square => {
+                square.addEventListener('mouseenter', function () {
+                    document.querySelector("#container").style.background = `rgba(0, 0, 0, ${opacity+0.1})`;
+                    opacity = opacity + 0.1;
+                });
+            });
+        }
+
+        function removeSquare() {
+            container.textContent = '';
+        }
+
+        createSquare();
         
     </script>
 </body>

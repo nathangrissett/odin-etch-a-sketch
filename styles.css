@@ -1,12 +1,12 @@
 div.square {
-    border: 2px solid black;
+    outline: 1px solid black;
     padding: 50%;
 }
 
 div#container {
     display: flex;
-    width: 500px;
-    height: 500px;
+    width: 750px;
+    height: 750px;
 }
 
 div.stack {
